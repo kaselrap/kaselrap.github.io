@@ -1,0 +1,229 @@
+@import "fonts"
+@import "libs"
+@import "vars"
+
+*
+	-webkit-box-sizing: border-box
+	-moz-box-sizing: border-box
+	box-sizing: border-box
+	&:before, &:after
+		-webkit-box-sizing: border-box
+		-moz-box-sizing: border-box
+		box-sizing: border-box
+
+*::-webkit-input-placeholder
+	color: #666
+	opacity: 1
+
+*:-moz-placeholder
+	color: #666
+	opacity: 1
+
+*::-moz-placeholder
+	color: #666
+	opacity: 1
+
+*:-ms-input-placeholder
+	color: #666
+	opacity: 1
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid
+	color: #666
+body input:required:valid,
+body textarea:required:valid
+	color: #666
+
+html, body
+	height: 100%
+
+body
+	font-size: 16px
+	min-width: 320px
+	position: relative
+	line-height: 1.65
+	font-family: $default-font
+	overflow-x: hidden
+a 
+	color: $accent
+	&:hover
+		color: lighter($accent, 10%)
+		text-decoration: none
+.img-responsive
+	display: block
+	max-width: 100%
+	height: auto
+
+.text-center
+	text-align: center
+
+::selection
+	background-color: $accent
+	color: #fff
+.container-fluid 
+	padding: 0 100px
+.bg 
+	background-repeat: no-repeat
+	background-size: cover
+	height: 100%
+	width: 100%
+	min-height: 30vw
+	overflow: hidden
+.controller 
+	min-height: 100%
+	background: #fff
+	margin: 0 auto
+.header 
+	width: 100%
+	min-height: 120px
+	.top-side 
+		display: flex
+		justify-content: center	
+		position: fixed
+		left: 0
+		top: 0
+		background: #fff
+		width: 100%
+		z-index: 999
+	.logo
+		text-transform: uppercase
+		font-size: 27px
+		line-height: 45px
+		display: flex
+		a
+			font-size: 2vw
+			&:hover, &:focus
+				color: $accent
+	.title
+		display: flex
+		justify-content: center
+		padding-top: 45px
+		position: relative
+		h1
+			position: absolute
+			top: 50%
+			left: 50%
+			transform: translate(-50%, -50%)
+			font-size: 3vw
+			color: #fff
+			text-align: center
+			text-transform: uppercase
+	.social-icons
+		line-height: 120px
+		i:hover 
+			color: $accent
+.column 
+	width: 940px
+	margin: 0 auto
+	overflow: hidden
+.top-side
+	display: flex
+	justify-content: space-between
+	align-items: center
+.line 
+	span
+		border-bottom: 6px solid $accent
+	text-transform: uppercase
+	border-bottom: 1px solid $accent
+h1.line 
+	text-align: center
+section
+	padding: 35px 0
+footer#footer 
+	position: relative
+	padding-top: 120px
+	border-bottom: 6px solid $accent
+	p.copyright
+		position: absolute
+		display: inline-block
+		bottom: -1px
+		right: 30px
+		margin: 0
+		padding: 10px
+		color: #fff
+		background: $accent
+.bets 
+	padding-top: 15px
+.bet 
+	padding: 20px 0
+	.bet-image 
+		img
+			width: 100%
+			object-fit: cover
+	.bet-title
+		display: flex
+		justify-content: space-between
+		align-items: center
+		padding-top: 10px
+		a
+			font-size: 20px
+			color: $header-h1-to-h5-color
+			&:hover
+				color: $accent
+		.rating
+			width: 53px
+			height: 9px
+			cursor: pointer
+			display: block
+			position: relative
+			background: url("../img/stars2.png") no-repeat
+			span
+				display: block
+				height: 9px
+				background: url("../img/stars.png") no-repeat
+	.bet-description
+		color: $text
+		margin: 0
+		padding: 5px 0
+.projects 
+	padding-top: 35px
+.project 
+	border: 1px solid #ddd
+	.project-image 
+		img
+			width: 100%
+			object-fit: cover
+	.project-title
+		display: flex
+		justify-content: center
+		align-items: center
+		padding: 10px 0
+		border-top: 1px solid #ddd
+		a
+			font-weight: 900
+			font-size: 22px
+			color: $header-h1-to-h5-color
+			&:hover
+				color: $accent
+.subscription-form
+	display: block
+	padding-top: 35px
+	.form
+		position: relative
+		width: 100%
+		height: 100%
+		img
+			max-height: 250px
+			width: 100%
+			object-fit: cover
+		.get-bonus
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 100%
+			background: #00000090
+			a
+				position: absolute
+				top: 50%
+				left: 50%
+				transform: translate(-50%, -50%)
+				color: #fff
+				background: transparent
+				border: 1px solid $accent
+				padding: 10px 20px
+				&:hover
+					background: $accent
+
+
+@import "media" // Всегда в конце
