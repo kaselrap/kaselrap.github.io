@@ -1,6 +1,6 @@
-<html>
+<!-- <html>
   <head>
-    <title>Sort victorina</title>
+    <title>Форматировании статистики</title>
     <meta content="">
     <style>
       .container {
@@ -25,7 +25,124 @@
   
       </div>
     </div>
-    <script src="./jquery-3.4.1.min.js"></script>
+    <script src="../scripts/jquery-3.4.1.min.js"></script>
     <script src="./sort.js"></script>
   </body>
+</html> -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Форматировании статистики</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <meta name="theme-color" content="#563d7c">
+    <link rel="stylesheet" href="../styles/cover.css">
+
+    <style>
+      .converter {
+        display: flex;
+        justify-content: space-between;
+        background: #fff;
+        border: 1px solid gray;
+        border-radius: 4px;
+        min-height: 255px;
+        margin: 25px 0;
+      }
+      .textarea-block {
+        width: 50%;
+      }
+      .textarea-block:not(:last-child) {
+        border-right: 1px solid gray;
+      }
+      textarea.in-block {
+        width: 100%;
+        height: 100%;
+        resize: none;
+        border: none;
+        padding: 15px;
+        font-size: 18px;
+      }
+      .textarea-result {
+        position: relative;
+        z-index: 1;
+      }
+      .textarea-result .copy {
+        position: absolute;
+        top: 15px;
+        right: 25px;
+        z-index: 2;
+      }
+      .textarea-result .copy img {
+        width: 24px;
+      }
+      .textarea-result .copy:hover img {
+        opacity: .8;
+      }
+      .result-invisible {
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: 0;
+        top: 0;
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body class="text-center">
+    <div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <h3 class="masthead-brand">
+        <a href="/">Навигация</a>
+      </h3>
+      <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link active" href="/statistics/">Форматирование статистики</a>
+      </nav>
+    </div>
+  </header>
+  <textarea class="result result-invisible"></textarea>
+
+  <main role="main" class="inner cover">
+    <div class="converter">
+        <div class="textarea-block">
+          <textarea id="sort" class="sort in-block" oninput="sorting()"></textarea>
+        </div>
+        <div class="textarea-block textarea-result">
+          <a href="#" class="copy">
+            <img src="./icons8-copy-64.png" alt="Copy">
+          </a>
+          <textarea class="result in-block"></textarea>
+        </div>
+    </div>
+  </main>
+
+  <footer class="mastfoot mt-auto">
+    <div class="inner">
+      <p>Veselov Stanislav.</p>
+    </div>
+  </footer>
+
+  <script src="../scripts/jquery-3.4.1.min.js"></script>
+  <script src="./sort.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.copy').on('click', function (e) {
+        e.preventDefault();
+
+        var textarea = document.querySelector('.result-invisible');
+        textarea.select();
+        textarea.setSelectionRange(0, 99999); /*For mobile devices*/
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+        
+        alert('Text copied.');
+      });
+    });
+  </script>
+</div>
+</body>
 </html>

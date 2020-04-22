@@ -15,7 +15,7 @@ function sorting() {
   var i = 1;
   for (key in groupedListByValue) {
       for (newKey in groupedListByValue[key]) {
-        $('.result').append('<p>' + (newKey == 0 ? i + '. ' : '') + groupedListByValue[key][newKey].name + ' ' + groupedListByValue[key][newKey].value + '</p>');
+        $('.result').append((newKey == 0 ? i + '. ' : '') + groupedListByValue[key][newKey].name + ' ' + groupedListByValue[key][newKey].value + '&#10;');
       }
       i++;
   }
@@ -29,3 +29,4 @@ function groupBy (key, array) {
         return objectsByKeyValue;
     }, {});
 }
+
