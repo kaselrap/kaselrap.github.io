@@ -25,6 +25,10 @@ class Canvas {
             this.ctx.fillText(player.value, diploma.getPlayerStartPositionInTheField(this.ctx.measureText(player.value)), Diploma.getPlayerYMap[number])
         });
     }
+
+    getImage() {
+        return this.canvas.toDataURL('image/jpg')
+    }
 }
 
 class Diploma {
@@ -81,6 +85,10 @@ class Diploma {
                 }
         )
     }
+
+    getDiplomaName() {
+        return this.commandName.value
+    }
 }
 
 (async function() {
@@ -103,8 +111,8 @@ class Diploma {
 
 
     downloadBtn.addEventListener('click', function () {
-        downloadBtn.href = this.canvas.canvas.toDataURL('image/jpg')
-        downloadBtn.download = 'Certificate - ' + diploma.commandName.value
+        downloadBtn.href = canvas.getImage()
+        downloadBtn.download = 'Certificate - ' + diploma.getDiplomaName()
     })
 
     function getCursorPosition(canvas, event) {
