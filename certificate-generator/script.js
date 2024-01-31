@@ -1,79 +1,127 @@
-var canvas = document.getElementById('canvas')
-var ctx = canvas.getContext('2d')
-var commandName = document.getElementById('command_name')
-var score = document.getElementById('score')
-var player1 = document.getElementById('player_1')
-var player2 = document.getElementById('player_2')
-var player3 = document.getElementById('player_3')
-var player4 = document.getElementById('player_4')
-var player5 = document.getElementById('player_5')
-var player6 = document.getElementById('player_6')
-var player7 = document.getElementById('player_7')
-var downloadBtn = document.getElementById('download-btn')
+const COMMAND_NAME_FIELD_START_POSITION = 128.5;
+const COMMAND_NAME_FIELD_WIDTH = 640;
 
-var image = new Image()
-image.crossOrigin="anonymous";
-image.src = 'cert.jpg'
-image.onload = function () {
-	drawImage()
+const SCORE_FIELD_START_POSITION = 402.5;
+const SCORE_FIELD_WIDTH = 118;
+
+const PLAYER_FIELD_START_POSITION = 77.5;
+const PLAYER_FIELD_WIDTH = 487;
+const LETTER_AVERAGE_WIDTH = 7.5;
+
+class Canvas {
+    constructor(canvas) {
+        this.canvas = canvas
+        this.ctx = canvas.getContext('2d')
+    }
+
+    drawImage(image, diploma) {
+        this.ctx.drawImage(image, 0, 0, this.canvas.width, this.canvas.height)
+        this.ctx.font = 'bold 32px BadScript'
+        this.ctx.fillStyle = '#0e0000'
+        this.ctx.fillText(diploma.commandName.value, diploma.getCommandNameStartPositionInTheField(this.ctx.measureText(diploma.commandName.value)), Diploma.getCommandNameXYPosition.y)
+        this.ctx.fillText(diploma.score.value, diploma.getScoreStartPositionInTheField(this.ctx.measureText(diploma.score.value)), Diploma.getScoreXYPosition.y)
+
+        diploma.players.forEach((player, number) => {
+            this.ctx.fillText(player.value, diploma.getPlayerStartPositionInTheField(this.ctx.measureText(player.value)), Diploma.getPlayerYMap[number])
+        });
+    }
 }
 
-function drawImage() {
-	// ctx.clearRect(0, 0, canvas.width, canvas.height)
-	ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
-	ctx.font = 'bold 32px BadScript'
-	ctx.fillStyle = '#0e0000'
-    ctx.fillText(commandName.value, 128, 416)
-    ctx.fillText(score.value, 435.5, 465)
-    ctx.fillText(player1.value, 77.5, 555)
-    ctx.fillText(player2.value, 77.5, 632)
-    ctx.fillText(player3.value, 77.5, 712)
-    ctx.fillText(player4.value, 77.5, 781)
-    ctx.fillText(player5.value, 77.5, 861)
-    ctx.fillText(player6.value, 77.5, 936)
-    ctx.fillText(player7.value, 77.5, 1003)
+class Diploma {
+    constructor(commandName, score, players) {
+        this.commandName = commandName
+        this.score = score
+        this.players = players
+    }
+
+    applyResults(results) {
+        this.commandName.value = results.command_name;
+        this.score.value = results.score;
+        this.players.forEach((player, index) => {
+            player.value = results.players[index]
+        })
+    }
+
+    static get getCommandNameXYPosition() {
+        return {
+            x: 128,
+            y: 416
+        }
+    }
+
+    static get getScoreXYPosition() {
+        return {
+            x: 435.5,
+            y: 465
+        }
+    }
+
+    static get getPlayerYMap() {
+        return [555, 632, 712, 781, 861, 936, 1003];
+    }
+
+    getScoreStartPositionInTheField(metrics) {
+        return SCORE_FIELD_START_POSITION + (SCORE_FIELD_WIDTH - metrics.width) / 2
+    }
+
+    getCommandNameStartPositionInTheField(metrics) {
+        return COMMAND_NAME_FIELD_START_POSITION + (COMMAND_NAME_FIELD_WIDTH - metrics.width) / 2
+    }
+
+    getPlayerStartPositionInTheField(metrics) {
+        return PLAYER_FIELD_START_POSITION + (PLAYER_FIELD_WIDTH - metrics.width) / 2
+    }
+
+    listenForChange(fn) {
+        [this.commandName, this.score, ...this.players].forEach(
+                (item) => {
+                    item.addEventListener('input', function () {
+                        fn()
+                    })
+                }
+        )
+    }
 }
 
-commandName.addEventListener('input', function () {
-	drawImage()
-})
-score.addEventListener('input', function () {
-    drawImage()
-})
-player1.addEventListener('input', function () {
-    drawImage()
-})
-player2.addEventListener('input', function () {
-    drawImage()
-})
-player3.addEventListener('input', function () {
-    drawImage()
-})
-player4.addEventListener('input', function () {
-    drawImage()
-})
-player5.addEventListener('input', function () {
-    drawImage()
-})
-player6.addEventListener('input', function () {
-    drawImage()
-})
-player7.addEventListener('input', function () {
-    drawImage()
-})
+(async function() {
+    let downloadBtn = document.getElementById('download-btn')
+    let canvas = new Canvas(document.getElementById('canvas'))
+    let diploma = new Diploma(
+            document.getElementById('command_name'),
+            document.getElementById('score'),
+            document.querySelectorAll('.player')
+    )
+    diploma.applyResults(await getResults())
 
-downloadBtn.addEventListener('click', function () {
-	downloadBtn.href = canvas.toDataURL('image/jpg')
-	downloadBtn.download = 'Certificate - ' + commandName.value
-})
+    let image = new Image()
+    image.crossOrigin="anonymous";
+    image.src = 'cert.jpg'
+    image.onload = function () {
+        canvas.drawImage(image, diploma)
+    }
+    diploma.listenForChange(() => canvas.drawImage(image, diploma))
 
-// function getCursorPosition(canvas, event) {
-//     const rect = canvas.getBoundingClientRect()
-//     const x = event.clientX - rect.left
-//     const y = event.clientY - rect.top
-//     console.log("x: " + x + " y: " + y)
-// }
-//
-// canvas.addEventListener('mousedown', function(e) {
-//     getCursorPosition(canvas, e)
-// })
+
+    downloadBtn.addEventListener('click', function () {
+        downloadBtn.href = this.canvas.canvas.toDataURL('image/jpg')
+        downloadBtn.download = 'Certificate - ' + diploma.commandName.value
+    })
+
+    function getCursorPosition(canvas, event) {
+        const rect = canvas.getBoundingClientRect()
+        const x = event.clientX - rect.left
+        const y = event.clientY - rect.top
+        console.log("x: " + x + " y: " + y)
+    }
+
+    canvas.canvas.addEventListener('mousedown', function(e) {
+        getCursorPosition(canvas.canvas, e)
+    })
+
+    async function getResults() {
+        const response = await fetch('./result.json');
+        const results = await response.json();
+        results.players = results.players.slice(0, 7)
+        return results;
+    }
+})()
