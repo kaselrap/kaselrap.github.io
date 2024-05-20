@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Open-Sans;
+}
+.container {
+    margin: 25px 0;
+    display: flex;
+    justify-content: center;
+}
+.block {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    min-width: 764px;
+    border: 1px solid;
+}
+.block .inner-block {
+    width: 50%;
+    padding: 0 10px;
+}
+.church-info {
+    background: #b8e0ff50;
+    color: #467ba9;
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+.church-info .item .info {
+    margin-left: 10px;
+}
+.church-info .item .name {
+    align-self: flex-end;
+}
+
+.item {
+    display: flex;
+    min-height: 22px;
+}
+.info {
+    width: 100%;
+    border-bottom: 1px solid;
+}
+
+.church-info .attendant {
+    margin-top: 15px;
+}
+
+.church-info .attendant .item .info {
+    margin-left: 0px;
+}
+
+.block-info {
+    margin-bottom: 20px;
+}
+.block-name {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.block-name span {
+    text-transform: initial;
+}
+
+.block-name {
+    font-size: 18px;
+}
+
+.help-command .block-name {
+    color: #608d28;
+}
+.call-friend .block-name {
+    color: #de8e22;
+}
+.call-friend .block-name span {
+    color: #484444;
+}
+.team .block-name {
+    color: #467ba9;
+}

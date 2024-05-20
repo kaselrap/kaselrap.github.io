@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фрукты</title>
+    <link rel="stylesheet" href="assets/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+    <div class="header-instruments">
+        <div class="block left-block">
+            <div class="upload-btn-wrapper">
+                <button class="btn">Выбрать файл</button>
+                <input id="input-file" type="file" name="file" />
+            </div>
+            <div class="color-picker btn-wrapper">
+                <label class="btn" for="color-picker-input">
+                    Выбрать цвет
+                    <input id="color-picker-input" type="color" name="color-picker" value="#682718">
+                </label>
+            </div>
+            <div class="width btn-wrapper">
+                <label for="width" class="btn">
+                    Ширина
+                    <input id="width" type="number" value="460">
+                </label>
+            </div>
+            <div class="offset btn-wrapper">
+                <label for="offset" class="btn">
+                    Отступ между
+                    <input id="offset" type="number" value="200">
+                </label>
+            </div>
+            <div class="offset_y btn-wrapper">
+                <label for="offset_y" class="btn">
+                    Отступ верх
+                    <input id="offset_y" type="number" value="200">
+                </label>
+            </div>
+            <div class="offset_x btn-wrapper">
+                <label for="offset_x" class="btn">
+                    Отступ Бок
+                    <input id="offset_x" type="number" value="140">
+                </label>
+            </div>
+        </div>
+        <div class="block right-block">
+            <div class="output-file-name">
+                <input id="output-input" class="output-input" type="text" placeholder="Название файла ...">
+            </div>
+            <a href="#" class="download-btn" id="download-btn" style="">Скачать</a>
+        </div>
+    </div>
+    <div class="container images-container">
+        <div class="canvas-container images">
+            <div class="owl-carousel">
+                <div class="item"><img src="images/1.png"></div>
+                <div class="item"><img src="images/qr.jpg"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="padding: 20px 0;">
+        <div class="canvas-container">
+            <canvas id="canvas" class="canvas" height="3580px" width="2480px"></canvas>
+        </div>
+    </div>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
