@@ -29,6 +29,7 @@
       --line: rgba(48, 54, 58, 0.14);
       --line-strong: rgba(101, 127, 106, 0.28);
       --shadow: 0 22px 70px rgba(92, 78, 62, 0.12);
+      --countdown-bar-height: 50px;
       --round: 8px;
       --display: Comfortaa, Arial, sans-serif;
       --sans: "Nunito Sans", Arial, sans-serif;
@@ -59,6 +60,10 @@
       max-width: 100%;
     }
 
+    section {
+      scroll-margin-top: calc(var(--countdown-bar-height) + 18px);
+    }
+
     .page {
       overflow: hidden;
       background:
@@ -70,7 +75,7 @@
       min-height: 86svh;
       display: grid;
       align-items: center;
-      padding: 72px 28px 96px;
+      padding: 126px 28px 96px;
       color: #fffaf0;
       isolation: isolate;
     }
@@ -103,7 +108,7 @@
 
     .hero-nav {
       position: absolute;
-      top: 24px;
+      top: calc(var(--countdown-bar-height) + 24px);
       left: 28px;
       right: 28px;
       display: flex;
@@ -188,46 +193,70 @@
       margin-top: 34px;
     }
 
-    .countdown {
+    .countdown-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      min-height: var(--countdown-bar-height);
+      padding: 8px 20px;
+      background: linear-gradient(90deg, #a93f3b, #c8574f);
+      color: #fffaf6;
+      box-shadow: 0 10px 28px rgba(87, 45, 40, 0.24);
+    }
+
+    .countdown-bar-inner {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      max-width: 640px;
-      margin-top: 26px;
+      gap: 10px 14px;
+      align-items: center;
+      justify-content: center;
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      min-height: calc(var(--countdown-bar-height) - 16px);
+      line-height: 1.15;
     }
 
-    .countdown-item {
-      min-width: 92px;
-      padding: 12px 14px;
-      border: 1px solid rgba(255, 250, 246, 0.36);
-      border-radius: var(--round);
-      background: rgba(255, 250, 246, 0.14);
-      backdrop-filter: blur(12px);
+    .countdown-bar-label,
+    .countdown-note {
+      font-size: 0.84rem;
+      font-weight: 900;
     }
 
-    .countdown-item strong {
-      display: block;
+    .countdown-bar-label {
+      text-transform: uppercase;
+    }
+
+    .countdown-bar-time {
+      display: inline-flex;
+      gap: 8px;
+      align-items: baseline;
+      white-space: nowrap;
+    }
+
+    .countdown-part {
+      display: inline-flex;
+      gap: 3px;
+      align-items: baseline;
+      font-weight: 900;
+    }
+
+    .countdown-part strong {
       font-family: var(--display);
-      font-size: 1.65rem;
+      font-size: 1.08rem;
       line-height: 1;
       letter-spacing: 0;
     }
 
-    .countdown-item span {
-      display: block;
-      margin-top: 7px;
-      color: rgba(255, 250, 246, 0.78);
+    .countdown-part span {
+      color: rgba(255, 250, 246, 0.86);
       font-size: 0.72rem;
-      font-weight: 900;
-      line-height: 1;
       text-transform: uppercase;
     }
 
     .countdown-note {
-      flex-basis: 100%;
-      margin: 4px 0 0;
       color: rgba(255, 250, 246, 0.86);
-      font-weight: 800;
     }
 
     .button {
@@ -763,12 +792,36 @@
     }
 
     @media (max-width: 700px) {
+      :root {
+        --countdown-bar-height: 54px;
+      }
+
+      .countdown-bar {
+        padding: 7px 14px;
+      }
+
+      .countdown-bar-inner {
+        justify-content: flex-start;
+        gap: 7px 10px;
+      }
+
+      .countdown-bar-label,
+      .countdown-note {
+        font-size: 0.76rem;
+      }
+
+      .countdown-part strong {
+        font-size: 0.98rem;
+      }
+
       .hero {
-        min-height: 84svh;
-        padding: 86px 20px 76px;
+        min-height: auto;
+        align-items: start;
+        padding: 172px 20px 76px;
       }
 
       .hero-nav {
+        top: calc(var(--countdown-bar-height) + 18px);
         left: 20px;
         right: 20px;
         width: calc(100% - 40px);
@@ -825,6 +878,10 @@
         justify-content: flex-start;
       }
 
+      .nav-links a {
+        font-size: 0.78rem;
+      }
+
       .nav-links a:nth-child(2) {
         display: none;
       }
@@ -863,6 +920,19 @@
   </style>
 </head>
 <body>
+  <div class="countdown-bar" data-countdown aria-label="Обратный отсчет до начала ХДД 2026">
+    <div class="countdown-bar-inner">
+      <span class="countdown-bar-label">До ХДД 2026</span>
+      <span class="countdown-bar-time">
+        <span class="countdown-part"><strong data-countdown-days>00</strong><span>д</span></span>
+        <span class="countdown-part"><strong data-countdown-hours>00</strong><span>ч</span></span>
+        <span class="countdown-part"><strong data-countdown-minutes>00</strong><span>м</span></span>
+        <span class="countdown-part"><strong data-countdown-seconds>00</strong><span>с</span></span>
+      </span>
+      <span class="countdown-note" data-countdown-note>Старт 12 июня</span>
+    </div>
+  </div>
+
   <main class="page">
     <section class="hero" aria-label="Приглашение на ХДД 2026">
       <nav class="hero-nav" aria-label="Навигация">
@@ -880,25 +950,6 @@
           12-14 июня в Бегомле: три дня радости, игр, творчества, общения и добрых
           встреч для детей, подростков и семей.
         </p>
-        <div class="countdown" data-countdown aria-label="Обратный отсчет до начала ХДД 2026">
-          <div class="countdown-item">
-            <strong data-countdown-days>00</strong>
-            <span>дней</span>
-          </div>
-          <div class="countdown-item">
-            <strong data-countdown-hours>00</strong>
-            <span>часов</span>
-          </div>
-          <div class="countdown-item">
-            <strong data-countdown-minutes>00</strong>
-            <span>минут</span>
-          </div>
-          <div class="countdown-item">
-            <strong data-countdown-seconds>00</strong>
-            <span>секунд</span>
-          </div>
-          <p class="countdown-note" data-countdown-note>До начала в пятницу, 12 июня 2026</p>
-        </div>
         <div class="hero-actions" aria-label="Действия">
           <a class="button" href="#registration">Зарегистрировать детей</a>
           <a class="button secondary" href="#gallery">Смотреть фото 2025</a>
