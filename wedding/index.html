@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Свадебное приглашение Павла и Аси на 1 августа 2026 года.">
+  <meta name="description" content="Свадебное приглашение Павла и Аси на 1 августа 2026 года в 11:00.">
   <meta name="theme-color" content="#f4eee6">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kaselrap.github.io/wedding/">
   <meta property="og:title" content="Павел и Ася | Свадебное приглашение">
-  <meta property="og:description" content="1 августа 2026, Боровляны, церковь «Воскресение».">
+  <meta property="og:description" content="1 августа 2026, 11:00, Боровляны, церковь «Воскресение».">
   <meta property="og:image" content="https://kaselrap.github.io/wedding/assets/church-hero.png">
   <title>Павел и Ася | Свадебное приглашение</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -251,6 +251,54 @@
       color: var(--muted);
     }
 
+    .schedule {
+      padding: 24px 28px 78px;
+    }
+
+    .schedule-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .schedule-head .lead {
+      max-width: 430px;
+      margin: 0;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .timeline-item {
+      min-height: 170px;
+      padding: 24px 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 252, 247, 0.74);
+      box-shadow: var(--shadow);
+    }
+
+    .time {
+      display: block;
+      margin-bottom: 28px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--gold);
+    }
+
+    .event {
+      margin: 0;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
     .blessing {
       position: relative;
       padding: 88px 28px;
@@ -338,12 +386,22 @@
         font-size: 2.4rem;
       }
 
-      .details-grid {
+      .details-grid,
+      .timeline {
         grid-template-columns: 1fr;
       }
 
-      .detail-card {
+      .detail-card,
+      .timeline-item {
         min-height: auto;
+      }
+
+      .schedule-head {
+        display: block;
+      }
+
+      .schedule-head .lead {
+        margin-top: 18px;
       }
     }
 
@@ -366,6 +424,7 @@
 
       .intro,
       .details,
+      .schedule,
       .blessing {
         padding-left: 18px;
         padding-right: 18px;
@@ -385,11 +444,12 @@
         <p class="hero-kicker">Свадебное приглашение</p>
         <h1 class="hero-title">Павел &amp; Ася</h1>
         <p class="hero-text">
-          С радостью приглашаем вас разделить с нами день, в который мы перед Богом и близкими начнем нашу семью.
+          Приглашаем вас на наше бракосочетание 1 августа 2026 года в 11:00.
         </p>
         <div class="hero-actions" aria-label="Действия">
           <a class="button" href="#details">Дата и место</a>
-          <a class="button secondary" href="https://www.google.com/maps/search/?api=1&amp;query=%D0%91%D0%BE%D1%80%D0%BE%D0%B2%D0%BB%D1%8F%D0%BD%D1%8B%20%D1%86%D0%B5%D1%80%D0%BA%D0%BE%D0%B2%D1%8C%20%D0%92%D0%BE%D1%81%D0%BA%D1%80%D0%B5%D1%81%D0%B5%D0%BD%D0%B8%D0%B5" target="_blank" rel="noopener">Открыть карту</a>
+          <a class="button secondary" href="#schedule">Расписание</a>
+          <a class="button secondary" href="https://www.google.com/maps/search/?api=1&amp;query=%D0%9F%D0%B5%D1%80%D0%B2%D0%BE%D0%BC%D0%B0%D0%B9%D1%81%D0%BA%D0%B0%D1%8F%2023%2C%20%D0%91%D0%BE%D1%80%D0%BE%D0%B2%D0%BB%D1%8F%D0%BD%D1%8B%2C%20%D1%86%D0%B5%D1%80%D0%BA%D0%BE%D0%B2%D1%8C%20%D0%92%D0%BE%D1%81%D0%BA%D1%80%D0%B5%D1%81%D0%B5%D0%BD%D0%B8%D0%B5" target="_blank" rel="noopener">Открыть карту</a>
         </div>
       </div>
     </section>
@@ -402,9 +462,9 @@
         </div>
         <div class="intro-copy">
           <p class="eyebrow">Мы будем очень рады видеть вас</p>
-          <h2 class="section-title" id="invitation-title">Пусть этот день станет общим праздником любви, веры и благодарности.</h2>
+          <h2 class="section-title" id="invitation-title">Разделите с нами день венчания, радости и благодарности.</h2>
           <p class="lead">
-            Ваше присутствие, молитва и теплые слова будут для нас настоящим подарком в день венчания.
+            Ваше присутствие, молитва и теплые слова будут для нас настоящим подарком.
           </p>
         </div>
       </div>
@@ -413,30 +473,64 @@
     <section class="details" id="details" aria-label="Подробности свадьбы">
       <div class="section-inner details-grid">
         <article class="detail-card">
-          <p class="detail-label">Дата</p>
+          <p class="detail-label">Дата и время</p>
           <h2>1 августа</h2>
-          <p>Суббота, 2026 год.</p>
+          <p>Суббота, 2026 год, 11:00.</p>
         </article>
         <article class="detail-card">
           <p class="detail-label">Место</p>
           <h2>Боровляны</h2>
-          <p>Церковь «Воскресение».</p>
+          <p>Церковь «Воскресение», Первомайская 23.</p>
         </article>
         <article class="detail-card">
-          <p class="detail-label">Главное</p>
-          <h2>Семья</h2>
-          <p>Мы хотим начать этот путь с молитвы, радости и близких людей рядом.</p>
+          <p class="detail-label">Подтверждение</p>
+          <h2>До 20.06</h2>
+          <p>Будем с нетерпением ждать подтверждение вашего присутствия.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="schedule" id="schedule" aria-labelledby="schedule-title">
+      <div class="section-inner">
+        <div class="schedule-head">
+          <div>
+            <p class="eyebrow">План дня</p>
+            <h2 class="section-title" id="schedule-title">Расписание торжества</h2>
+          </div>
+          <p class="lead">Будем благодарны каждому, кто останется до завершения торжества.</p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <span class="time">11:00</span>
+            <p class="event">Венчание</p>
+          </article>
+          <article class="timeline-item">
+            <span class="time">12:00</span>
+            <p class="event">Перерыв</p>
+          </article>
+          <article class="timeline-item">
+            <span class="time">14:00</span>
+            <p class="event">Пир</p>
+          </article>
+          <article class="timeline-item">
+            <span class="time">15:30</span>
+            <p class="event">Поздравления</p>
+          </article>
+          <article class="timeline-item">
+            <span class="time">18:00</span>
+            <p class="event">Завершение</p>
+          </article>
+        </div>
       </div>
     </section>
 
     <section class="blessing" aria-labelledby="blessing-title">
       <div class="blessing-content">
         <p class="eyebrow">С Божьим благословением</p>
-        <h2 class="verse" id="blessing-title">«Итак, что Бог сочетал, того человек да не разлучает»</h2>
-        <p class="verse-source">Евангелие от Матфея 19:6</p>
+        <h2 class="verse" id="blessing-title">«Боже! будь милостив к нам и благослови нас, освети нас лицем Твоим»</h2>
+        <p class="verse-source">Псалом 66:2</p>
         <p class="prayer">
-          Пусть Господь хранит наш дом в любви и мире, учит нас терпению и верности,
+          Пусть Господь хранит наш дом в любви и мире, учит нас верности,
           а каждый новый день наполняет благодарностью друг за друга.
         </p>
       </div>
