@@ -1030,13 +1030,16 @@
 
   <script>
     const googleFormConfig = {
-      action: "https://docs.google.com/forms/d/e/1FAIpQLSeBkopLzp4erTiZ0lZRbcIad5o5QRRKZf-u_Dhga2n-npiqLA/formResponse",
+      action: "https://docs.google.com/forms/d/e/1FAIpQLSdswICy4sLxwa7P6JiYhM_JzxhCaGcFLPWJEXtPlBtq-o-E_g/formResponse",
       fields: {
-        parentName: "entry.629938792",
-        attendance: "entry.587974994",
-        childCount: "entry.1135695922",
-        contact: "entry.2109219892",
-        comment: "entry.745919178"
+        parentName: "entry.462719266",
+        parentPhone: "entry.1313909629",
+        parentEmail: "entry.411067294",
+        parentCongregation: "entry.8451117",
+        childName: "entry.1636990621",
+        childAge: "entry.1885923505",
+        childNotes: "entry.813525432",
+        parentComment: "entry.324906847"
       }
     };
 
@@ -1295,44 +1298,29 @@
       renderChildren(state.children);
     };
 
-    const buildChildComment = (parent, child, index, total) => {
-      const lines = [
-        "ХДД 2026",
-        `Ребенок ${index + 1} из ${total}`,
-        `Имя ребенка: ${child.name}`,
-        `Возраст: ${child.age}`,
-        `Родитель: ${parent.name}`,
-        `Контакт: ${parent.phone}`
-      ];
-
-      if (parent.email) {
-        lines.push(`Email: ${parent.email}`);
-      }
-
-      if (parent.congregation) {
-        lines.push(`Церковь или город: ${parent.congregation}`);
-      }
-
-      if (child.notes) {
-        lines.push(`Особенности ребенка: ${child.notes}`);
-      }
+    const buildParentComment = (parent, index, total) => {
+      const lines = [];
 
       if (parent.comment) {
-        lines.push(`Комментарий родителя: ${parent.comment}`);
+        lines.push(parent.comment);
       }
+
+      lines.push(`Ребенок ${index + 1} из ${total}`);
 
       return lines.join("\n");
     };
 
     const submitChild = (parent, child, index, total) => {
       const googleFormData = new FormData();
-      const contacts = [parent.phone, parent.email].filter(Boolean).join(" / ");
 
       googleFormData.append(googleFormConfig.fields.parentName, parent.name);
-      googleFormData.append(googleFormConfig.fields.attendance, "Да, буду");
-      googleFormData.append(googleFormConfig.fields.childCount, String(total));
-      googleFormData.append(googleFormConfig.fields.contact, contacts);
-      googleFormData.append(googleFormConfig.fields.comment, buildChildComment(parent, child, index, total));
+      googleFormData.append(googleFormConfig.fields.parentPhone, parent.phone);
+      googleFormData.append(googleFormConfig.fields.parentEmail, parent.email);
+      googleFormData.append(googleFormConfig.fields.parentCongregation, parent.congregation);
+      googleFormData.append(googleFormConfig.fields.childName, child.name);
+      googleFormData.append(googleFormConfig.fields.childAge, child.age);
+      googleFormData.append(googleFormConfig.fields.childNotes, child.notes);
+      googleFormData.append(googleFormConfig.fields.parentComment, buildParentComment(parent, index, total));
 
       return fetch(googleFormConfig.action, {
         method: "POST",
