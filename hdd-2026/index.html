@@ -357,45 +357,103 @@
       margin-bottom: 28px;
     }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 12px;
+    .gallery-slider {
+      position: relative;
+      margin-top: 10px;
     }
 
-    .gallery-item {
+    .gallery-viewport {
+      overflow: hidden;
+      border-radius: var(--round);
+    }
+
+    .gallery-track {
+      display: flex;
+      gap: 16px;
+      align-items: stretch;
+      transition: transform 560ms ease;
+      will-change: transform;
+    }
+
+    .gallery-slide {
       position: relative;
-      min-height: 210px;
+      flex: 0 0 min(74vw, 780px);
+      aspect-ratio: 16 / 9;
       overflow: hidden;
       border-radius: var(--round);
       background: #244f49;
       box-shadow: 0 20px 46px rgba(0, 0, 0, 0.2);
     }
 
-    .gallery-item.wide {
-      grid-column: span 6;
-      aspect-ratio: 4 / 3;
-    }
-
-    .gallery-item.tall {
-      grid-column: span 3;
-      aspect-ratio: 3 / 4;
-    }
-
-    .gallery-item.medium {
-      grid-column: span 4;
-      aspect-ratio: 4 / 3;
-    }
-
-    .gallery-item img {
+    .gallery-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 280ms ease;
     }
 
-    .gallery-item:hover img {
+    .gallery-slide:hover img,
+    .gallery-slide.is-active img {
       transform: scale(1.04);
+    }
+
+    .gallery-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border: 1px solid rgba(255, 250, 240, 0.42);
+      border-radius: 50%;
+      background: rgba(23, 63, 57, 0.78);
+      color: #fffaf0;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+    }
+
+    .gallery-arrow:hover,
+    .gallery-arrow:focus-visible {
+      border-color: rgba(242, 184, 75, 0.86);
+      background: rgba(31, 111, 91, 0.94);
+      outline: none;
+      transform: translateY(-50%) scale(1.04);
+    }
+
+    .gallery-arrow.prev {
+      left: 14px;
+    }
+
+    .gallery-arrow.next {
+      right: 14px;
+    }
+
+    .gallery-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    .gallery-dot {
+      width: 10px;
+      height: 10px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 250, 240, 0.38);
+      cursor: pointer;
+      transition: background 180ms ease, transform 180ms ease;
+    }
+
+    .gallery-dot.is-active {
+      background: var(--sun);
+      transform: scale(1.18);
     }
 
     .registration {
@@ -653,14 +711,8 @@
         grid-template-columns: 1fr;
       }
 
-      .gallery-item.wide,
-      .gallery-item.medium {
-        grid-column: span 6;
-      }
-
-      .gallery-item.tall {
-        grid-column: span 6;
-        aspect-ratio: 4 / 3;
+      .gallery-slide {
+        flex-basis: min(78vw, 640px);
       }
     }
 
@@ -707,6 +759,11 @@
         display: grid;
       }
 
+      .gallery-slide {
+        flex-basis: calc(100vw - 72px);
+        aspect-ratio: 4 / 3;
+      }
+
       .button {
         width: 100%;
       }
@@ -747,17 +804,18 @@
         padding: 20px;
       }
 
-      .gallery-grid {
-        display: grid;
-        grid-template-columns: 1fr;
+      .gallery-track {
+        gap: 12px;
       }
 
-      .gallery-item,
-      .gallery-item.wide,
-      .gallery-item.medium,
-      .gallery-item.tall {
-        grid-column: auto;
-        aspect-ratio: 4 / 3;
+      .gallery-slide {
+        flex-basis: calc(100vw - 48px);
+      }
+
+      .gallery-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1.8rem;
       }
     }
   </style>
@@ -837,43 +895,47 @@
             которые были в центре всего дня.
           </p>
         </div>
-        <div class="gallery-grid">
-          <a class="gallery-item wide" href="assets/gallery/hdd-2025-01.jpg" target="_blank" rel="noopener">
-            <img src="assets/gallery/hdd-2025-01.jpg" alt="Дети участвуют в общей активности на ХДД 2025" loading="lazy">
-          </a>
-          <a class="gallery-item tall" href="assets/gallery/hdd-2025-02.jpg" target="_blank" rel="noopener">
-            <img src="assets/gallery/hdd-2025-02.jpg" alt="Дети на батутной площадке ХДД 2025" loading="lazy">
-          </a>
-          <a class="gallery-item tall" href="assets/gallery/hdd-2025-04.jpg" target="_blank" rel="noopener">
-            <img src="assets/gallery/hdd-2025-04.jpg" alt="Игровая площадка и дети на ХДД 2025" loading="lazy">
-          </a>
-          <a class="gallery-item medium" href="assets/gallery/hdd-2025-03.jpg" target="_blank" rel="noopener">
-            <img src="assets/gallery/hdd-2025-03.jpg" alt="Командная активность на ХДД 2025" loading="lazy">
-          </a>
-          <a class="gallery-item medium" href="assets/gallery/hdd-2025-05.jpg" target="_blank" rel="noopener">
-            <img src="assets/gallery/hdd-2025-05.jpg" alt="Участники ХДД 2025 во время игры" loading="lazy">
-          </a>
-          <a class="gallery-item medium" href="assets/gallery/hdd-2025-06.jpg" target="_blank" rel="noopener">
-            <img src="assets/gallery/hdd-2025-06.jpg" alt="Детская команда на ХДД 2025" loading="lazy">
-          </a>
-          <a class="gallery-item wide" href="assets/gallery/hdd-2025-08.jpg" target="_blank" rel="noopener">
-            <img src="assets/gallery/hdd-2025-08.jpg" alt="Общий момент праздника ХДД 2025" loading="lazy">
-          </a>
-          <a class="gallery-item medium" href="assets/gallery/hdd-2025-07.jpg" target="_blank" rel="noopener">
-            <img src="assets/gallery/hdd-2025-07.jpg" alt="Дети и ведущие на ХДД 2025" loading="lazy">
-          </a>
-          <a class="gallery-item medium" href="assets/gallery/hdd-2025-09.jpg" target="_blank" rel="noopener">
-            <img src="assets/gallery/hdd-2025-09.jpg" alt="Игровая программа ХДД 2025" loading="lazy">
-          </a>
-          <a class="gallery-item medium" href="assets/gallery/hdd-2025-10.jpg" target="_blank" rel="noopener">
-            <img src="assets/gallery/hdd-2025-10.jpg" alt="Участники на площадке ХДД 2025" loading="lazy">
-          </a>
-          <a class="gallery-item medium" href="assets/gallery/hdd-2025-11.jpg" target="_blank" rel="noopener">
-            <img src="assets/gallery/hdd-2025-11.jpg" alt="Командная игра на ХДД 2025" loading="lazy">
-          </a>
-          <a class="gallery-item medium" href="assets/gallery/hdd-2025-12.jpg" target="_blank" rel="noopener">
-            <img src="assets/gallery/hdd-2025-12.jpg" alt="Дети во время праздника ХДД 2025" loading="lazy">
-          </a>
+        <div class="gallery-slider" data-gallery-slider aria-label="Фото ХДД 2025">
+          <button class="gallery-arrow prev" type="button" data-gallery-prev aria-label="Предыдущее фото" title="Предыдущее фото">‹</button>
+          <div class="gallery-viewport">
+            <div class="gallery-track" data-gallery-track>
+              <a class="gallery-slide is-active" href="assets/gallery/hdd-2025-01.jpg" target="_blank" rel="noopener" data-gallery-slide>
+                <img src="assets/gallery/hdd-2025-01.jpg" alt="Дети участвуют в общей активности на ХДД 2025" loading="lazy">
+              </a>
+              <a class="gallery-slide" href="assets/gallery/hdd-2025-02.jpg" target="_blank" rel="noopener" data-gallery-slide>
+                <img src="assets/gallery/hdd-2025-02.jpg" alt="Дети на батутной площадке ХДД 2025" loading="lazy">
+              </a>
+              <a class="gallery-slide" href="assets/gallery/hdd-2025-03.jpg" target="_blank" rel="noopener" data-gallery-slide>
+                <img src="assets/gallery/hdd-2025-03.jpg" alt="Командная активность на ХДД 2025" loading="lazy">
+              </a>
+              <a class="gallery-slide" href="assets/gallery/hdd-2025-05.jpg" target="_blank" rel="noopener" data-gallery-slide>
+                <img src="assets/gallery/hdd-2025-05.jpg" alt="Участники ХДД 2025 во время игры" loading="lazy">
+              </a>
+              <a class="gallery-slide" href="assets/gallery/hdd-2025-06.jpg" target="_blank" rel="noopener" data-gallery-slide>
+                <img src="assets/gallery/hdd-2025-06.jpg" alt="Детская команда на ХДД 2025" loading="lazy">
+              </a>
+              <a class="gallery-slide" href="assets/gallery/hdd-2025-08.jpg" target="_blank" rel="noopener" data-gallery-slide>
+                <img src="assets/gallery/hdd-2025-08.jpg" alt="Общий момент праздника ХДД 2025" loading="lazy">
+              </a>
+              <a class="gallery-slide" href="assets/gallery/hdd-2025-07.jpg" target="_blank" rel="noopener" data-gallery-slide>
+                <img src="assets/gallery/hdd-2025-07.jpg" alt="Дети и ведущие на ХДД 2025" loading="lazy">
+              </a>
+              <a class="gallery-slide" href="assets/gallery/hdd-2025-09.jpg" target="_blank" rel="noopener" data-gallery-slide>
+                <img src="assets/gallery/hdd-2025-09.jpg" alt="Игровая программа ХДД 2025" loading="lazy">
+              </a>
+              <a class="gallery-slide" href="assets/gallery/hdd-2025-10.jpg" target="_blank" rel="noopener" data-gallery-slide>
+                <img src="assets/gallery/hdd-2025-10.jpg" alt="Участники на площадке ХДД 2025" loading="lazy">
+              </a>
+              <a class="gallery-slide" href="assets/gallery/hdd-2025-11.jpg" target="_blank" rel="noopener" data-gallery-slide>
+                <img src="assets/gallery/hdd-2025-11.jpg" alt="Командная игра на ХДД 2025" loading="lazy">
+              </a>
+              <a class="gallery-slide" href="assets/gallery/hdd-2025-12.jpg" target="_blank" rel="noopener" data-gallery-slide>
+                <img src="assets/gallery/hdd-2025-12.jpg" alt="Дети во время праздника ХДД 2025" loading="lazy">
+              </a>
+            </div>
+          </div>
+          <button class="gallery-arrow next" type="button" data-gallery-next aria-label="Следующее фото" title="Следующее фото">›</button>
+          <div class="gallery-dots" data-gallery-dots aria-label="Выбор фото"></div>
         </div>
       </div>
     </section>
@@ -986,6 +1048,15 @@
     const resetButton = document.getElementById("reset-form");
     const submitButton = document.getElementById("registration-submit");
     const statusNode = document.getElementById("registration-status");
+    const galleryRoot = document.querySelector("[data-gallery-slider]");
+    const galleryTrack = document.querySelector("[data-gallery-track]");
+    const gallerySlides = Array.from(document.querySelectorAll("[data-gallery-slide]"));
+    const galleryDots = document.querySelector("[data-gallery-dots]");
+    const galleryPrevButton = document.querySelector("[data-gallery-prev]");
+    const galleryNextButton = document.querySelector("[data-gallery-next]");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let galleryIndex = 0;
+    let galleryAutoplayId;
 
     const emptyChild = () => ({
       name: "",
@@ -1020,6 +1091,86 @@
       statusNode.textContent = message;
       statusNode.className = type ? `form-status ${type}` : "form-status";
     };
+
+    const normalizeGalleryIndex = (index) => {
+      return (index + gallerySlides.length) % gallerySlides.length;
+    };
+
+    const setGallerySlide = (index) => {
+      if (!galleryTrack || gallerySlides.length === 0) {
+        return;
+      }
+
+      galleryIndex = normalizeGalleryIndex(index);
+      galleryTrack.style.transform = `translateX(-${gallerySlides[galleryIndex].offsetLeft}px)`;
+
+      gallerySlides.forEach((slide, slideIndex) => {
+        const isActive = slideIndex === galleryIndex;
+        slide.classList.toggle("is-active", isActive);
+        slide.tabIndex = isActive ? 0 : -1;
+        slide.setAttribute("aria-current", isActive ? "true" : "false");
+      });
+
+      galleryDots?.querySelectorAll("[data-gallery-dot]").forEach((dot, dotIndex) => {
+        const isActive = dotIndex === galleryIndex;
+        dot.classList.toggle("is-active", isActive);
+        dot.setAttribute("aria-current", isActive ? "true" : "false");
+      });
+    };
+
+    const stopGalleryAutoplay = () => {
+      window.clearInterval(galleryAutoplayId);
+    };
+
+    const startGalleryAutoplay = () => {
+      stopGalleryAutoplay();
+
+      if (gallerySlides.length <= 1 || reducedMotion.matches || document.hidden) {
+        return;
+      }
+
+      galleryAutoplayId = window.setInterval(() => {
+        setGallerySlide(galleryIndex + 1);
+      }, 3800);
+    };
+
+    if (galleryRoot && galleryTrack && galleryDots && gallerySlides.length > 0) {
+      gallerySlides.forEach((slide, index) => {
+        const dot = document.createElement("button");
+        dot.className = "gallery-dot";
+        dot.type = "button";
+        dot.dataset.galleryDot = "";
+        dot.setAttribute("aria-label", `Показать фото ${index + 1}`);
+        dot.addEventListener("click", () => {
+          setGallerySlide(index);
+          startGalleryAutoplay();
+        });
+        galleryDots.appendChild(dot);
+      });
+
+      galleryPrevButton?.addEventListener("click", () => {
+        setGallerySlide(galleryIndex - 1);
+        startGalleryAutoplay();
+      });
+
+      galleryNextButton?.addEventListener("click", () => {
+        setGallerySlide(galleryIndex + 1);
+        startGalleryAutoplay();
+      });
+
+      galleryRoot.addEventListener("mouseenter", stopGalleryAutoplay);
+      galleryRoot.addEventListener("mouseleave", startGalleryAutoplay);
+      galleryRoot.addEventListener("focusin", stopGalleryAutoplay);
+      galleryRoot.addEventListener("focusout", startGalleryAutoplay);
+      if (typeof reducedMotion.addEventListener === "function") {
+        reducedMotion.addEventListener("change", startGalleryAutoplay);
+      }
+      document.addEventListener("visibilitychange", startGalleryAutoplay);
+      window.addEventListener("resize", () => setGallerySlide(galleryIndex));
+
+      setGallerySlide(0);
+      startGalleryAutoplay();
+    }
 
     const isGoogleFormConfigured = () => {
       const fields = Object.values(googleFormConfig.fields);
