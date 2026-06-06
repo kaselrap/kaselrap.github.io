@@ -580,6 +580,41 @@
       box-shadow: 0 0 0 3px rgba(47, 140, 128, 0.16);
     }
 
+    .permission-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .permission-card {
+      display: grid;
+      gap: 12px;
+      padding: 15px;
+      border: 1px solid rgba(31, 111, 91, 0.2);
+      border-radius: var(--round);
+      background: #fff;
+    }
+
+    .permission-card p {
+      margin: 0;
+      color: var(--ink);
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .permission-choice {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      color: var(--forest);
+      font-weight: 900;
+    }
+
+    .permission-choice input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--forest);
+    }
+
     .children-head {
       display: flex;
       justify-content: space-between;
@@ -970,11 +1005,11 @@
             <h3 id="parent-title">Родитель</h3>
             <div class="field-grid">
               <label class="form-field">
-                <span>Имя родителя</span>
+                <span>ФИО родителя</span>
                 <input type="text" name="parent_name" autocomplete="name" data-parent-field="name" required>
               </label>
               <label class="form-field">
-                <span>Телефон или Telegram</span>
+                <span>Телефон</span>
                 <input type="text" name="parent_phone" autocomplete="tel" data-parent-field="phone" required>
               </label>
               <label class="form-field">
@@ -982,7 +1017,7 @@
                 <input type="email" name="parent_email" autocomplete="email" data-parent-field="email">
               </label>
               <label class="form-field">
-                <span>Церковь или город</span>
+                <span>Город</span>
                 <input type="text" name="parent_congregation" data-parent-field="congregation">
               </label>
               <label class="form-field full">
@@ -1000,6 +1035,40 @@
             <div class="children-list" id="children-list"></div>
             <div class="child-actions">
               <button class="button ghost" type="button" id="add-child">+ Добавить ребенка</button>
+            </div>
+          </section>
+
+          <section class="form-section" aria-labelledby="permissions-title">
+            <h3 id="permissions-title">⛺️ Участие и разрешения</h3>
+            <div class="permission-list">
+              <label class="permission-card">
+                <p>Разрешаете ли вы участие ребенка в активных играх, подвижных мероприятиях и прогулках на улице?</p>
+                <span class="permission-choice">
+                  <input type="radio" name="permission_active_games" value="Да" data-permission-field="activeGames" required>
+                  Да
+                </span>
+              </label>
+              <label class="permission-card">
+                <p>Разрешаете ли вы участие ребенка на мастер-классах на христианскую тематику, песнях и в том числе изучение христианских ценностей и норм жизни на основании Библии.</p>
+                <span class="permission-choice">
+                  <input type="radio" name="permission_christian_classes" value="Да" data-permission-field="christianClasses" required>
+                  Да
+                </span>
+              </label>
+              <label class="permission-card">
+                <p>Разрешаете ли вы фото и видеосъемку ребенка во время мероприятий с размещением в соцсетях?</p>
+                <span class="permission-choice">
+                  <input type="radio" name="permission_media" value="Да" data-permission-field="media" required>
+                  Да
+                </span>
+              </label>
+              <label class="permission-card">
+                <p>Подтверждаю, что предоставленная информация верна и даю согласие на участие моего ребенка 12-13-14 июня 2026г в "Христианских детских днях".</p>
+                <span class="permission-choice">
+                  <input type="radio" name="permission_participation" value="Согласен" data-permission-field="participation" required>
+                  Согласен
+                </span>
+              </label>
             </div>
           </section>
 
@@ -1039,7 +1108,11 @@
         childName: "entry.1636990621",
         childAge: "entry.1885923505",
         childNotes: "entry.813525432",
-        parentComment: "entry.324906847"
+        parentComment: "entry.324906847",
+        activeGames: "entry.218872502",
+        christianClasses: "entry.464755838",
+        media: "entry.1918533152",
+        participation: "entry.1887156337"
       }
     };
 
@@ -1074,6 +1147,12 @@
         email: "",
         congregation: "",
         comment: ""
+      },
+      permissions: {
+        activeGames: "",
+        christianClasses: "",
+        media: "",
+        participation: ""
       },
       children: [emptyChild()]
     });
@@ -1202,8 +1281,25 @@
       });
     };
 
+    const getPermissionState = () => {
+      const permissions = {};
+
+      registrationForm.querySelectorAll("[data-permission-field]").forEach((field) => {
+        if (!Object.prototype.hasOwnProperty.call(permissions, field.dataset.permissionField)) {
+          permissions[field.dataset.permissionField] = "";
+        }
+
+        if (field.checked) {
+          permissions[field.dataset.permissionField] = field.value;
+        }
+      });
+
+      return permissions;
+    };
+
     const getFormState = () => ({
       parent: getParentState(),
+      permissions: getPermissionState(),
       children: getChildrenState()
     });
 
@@ -1228,6 +1324,7 @@
 
         return {
           parent: { ...fallback.parent, ...(draft.parent || {}) },
+          permissions: { ...fallback.permissions, ...(draft.permissions || {}) },
           children: Array.isArray(draft.children) && draft.children.length > 0
             ? draft.children.map((child) => ({ ...emptyChild(), ...child }))
             : fallback.children
@@ -1262,7 +1359,7 @@
         </div>
         <div class="field-grid">
           <label class="form-field">
-            <span>Имя ребенка</span>
+            <span>ФИО ребенка</span>
             <input type="text" data-child-field="name" autocomplete="off" required>
           </label>
           <label class="form-field">
@@ -1295,6 +1392,9 @@
       registrationForm.querySelectorAll("[data-parent-field]").forEach((field) => {
         field.value = state.parent[field.dataset.parentField] || "";
       });
+      registrationForm.querySelectorAll("[data-permission-field]").forEach((field) => {
+        field.checked = field.value === state.permissions[field.dataset.permissionField];
+      });
       renderChildren(state.children);
     };
 
@@ -1310,7 +1410,7 @@
       return lines.join("\n");
     };
 
-    const submitChild = (parent, child, index, total) => {
+    const submitChild = (parent, permissions, child, index, total) => {
       const googleFormData = new FormData();
 
       googleFormData.append(googleFormConfig.fields.parentName, parent.name);
@@ -1321,6 +1421,10 @@
       googleFormData.append(googleFormConfig.fields.childAge, child.age);
       googleFormData.append(googleFormConfig.fields.childNotes, child.notes);
       googleFormData.append(googleFormConfig.fields.parentComment, buildParentComment(parent, index, total));
+      googleFormData.append(googleFormConfig.fields.activeGames, permissions.activeGames);
+      googleFormData.append(googleFormConfig.fields.christianClasses, permissions.christianClasses);
+      googleFormData.append(googleFormConfig.fields.media, permissions.media);
+      googleFormData.append(googleFormConfig.fields.participation, permissions.participation);
 
       return fetch(googleFormConfig.action, {
         method: "POST",
@@ -1400,7 +1504,7 @@
 
       try {
         for (const [index, child] of state.children.entries()) {
-          await submitChild(state.parent, child, index, total);
+          await submitChild(state.parent, state.permissions, child, index, total);
           sentCount += 1;
           setStatus(`Отправляем: ${sentCount} из ${total}.`);
         }
