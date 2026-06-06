@@ -1,0 +1,1284 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Приглашение на ХДД 2026: детский день с играми, общением, творчеством и регистрацией детей.">
+  <meta name="theme-color" content="#f6f2e7">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kaselrap.github.io/hdd-2026/">
+  <meta property="og:title" content="ХДД 2026 | Приглашение">
+  <meta property="og:description" content="Регистрируйте детей на ХДД 2026. Данные родителя вводятся один раз, детей можно добавить несколько.">
+  <meta property="og:image" content="https://kaselrap.github.io/hdd-2026/assets/gallery/hdd-2025-01.jpg">
+  <title>ХДД 2026 | Приглашение</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f6f2e7;
+      --paper-soft: #fffaf0;
+      --paper-green: #ecf5ee;
+      --ink: #203331;
+      --muted: #5d6c67;
+      --forest: #1f6f5b;
+      --teal: #2f8c80;
+      --coral: #df6657;
+      --sun: #f2b84b;
+      --line: rgba(32, 51, 49, 0.16);
+      --line-strong: rgba(31, 111, 91, 0.28);
+      --shadow: 0 22px 70px rgba(32, 51, 49, 0.13);
+      --round: 8px;
+      --display: Comfortaa, Arial, sans-serif;
+      --sans: "Nunito Sans", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page {
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, #f9f4e6 0%, #f6f2e7 34%, #ecf5ee 72%, #f6f2e7 100%);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 86svh;
+      display: grid;
+      align-items: center;
+      padding: 72px 28px 96px;
+      color: #fffaf0;
+      isolation: isolate;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero::before {
+      z-index: -2;
+      background: url("assets/gallery/hdd-2025-01.jpg") center / cover no-repeat;
+      transform: scale(1.01);
+    }
+
+    .hero::after {
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(20, 44, 41, 0.86) 0%, rgba(20, 44, 41, 0.54) 48%, rgba(223, 102, 87, 0.2) 100%),
+        linear-gradient(180deg, rgba(20, 44, 41, 0.22) 0%, rgba(20, 44, 41, 0.2) 64%, rgba(246, 242, 231, 0.94) 100%);
+    }
+
+    .section-inner,
+    .hero-inner {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .hero-nav {
+      position: absolute;
+      top: 24px;
+      left: 28px;
+      right: 28px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      width: min(1120px, calc(100% - 56px));
+      margin: 0 auto;
+      z-index: 2;
+    }
+
+    .brand {
+      font-family: var(--display);
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      min-height: 38px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 250, 240, 0.34);
+      border-radius: var(--round);
+      color: rgba(255, 250, 240, 0.92);
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-decoration: none;
+      background: rgba(32, 51, 49, 0.26);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-kicker,
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--coral);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker {
+      color: rgba(255, 250, 240, 0.86);
+    }
+
+    .hero-title {
+      max-width: 760px;
+      margin: 0;
+      font-family: var(--display);
+      font-size: 5.4rem;
+      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: 0;
+      text-wrap: balance;
+      text-shadow: 0 16px 44px rgba(0, 0, 0, 0.26);
+    }
+
+    .hero-text {
+      max-width: 620px;
+      margin: 26px 0 0;
+      color: rgba(255, 250, 240, 0.9);
+      font-size: 1.1rem;
+      text-shadow: 0 10px 28px rgba(0, 0, 0, 0.26);
+    }
+
+    .hero-actions,
+    .form-actions,
+    .child-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .hero-actions {
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 0 20px;
+      border: 1px solid transparent;
+      border-radius: var(--round);
+      background: var(--sun);
+      color: #1e302e;
+      font: inherit;
+      font-size: 0.96rem;
+      font-weight: 900;
+      line-height: 1.1;
+      text-decoration: none;
+      box-shadow: 0 16px 44px rgba(20, 44, 41, 0.2);
+      cursor: pointer;
+    }
+
+    .button.secondary {
+      border-color: rgba(255, 250, 240, 0.54);
+      background: rgba(255, 250, 240, 0.14);
+      color: #fffaf0;
+      backdrop-filter: blur(12px);
+    }
+
+    .button.ghost {
+      border-color: var(--line-strong);
+      background: #fff;
+      color: var(--forest);
+      box-shadow: none;
+    }
+
+    .button.danger {
+      border-color: rgba(223, 102, 87, 0.36);
+      background: #fff;
+      color: var(--coral);
+      box-shadow: none;
+    }
+
+    .button:disabled {
+      cursor: not-allowed;
+      opacity: 0.66;
+    }
+
+    .intro {
+      padding: 74px 28px 38px;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.78fr) minmax(0, 1.22fr);
+      gap: 48px;
+      align-items: end;
+      padding-bottom: 50px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .year-mark {
+      display: grid;
+      align-content: center;
+      min-height: 260px;
+      padding: 28px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--round);
+      background:
+        linear-gradient(135deg, rgba(47, 140, 128, 0.12), rgba(242, 184, 75, 0.2)),
+        var(--paper-soft);
+      box-shadow: var(--shadow);
+    }
+
+    .year-mark strong {
+      display: block;
+      color: var(--forest);
+      font-family: var(--display);
+      font-size: 4.6rem;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .year-mark span {
+      display: block;
+      margin-top: 18px;
+      color: var(--coral);
+      font-size: 0.94rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: var(--display);
+      font-size: 2.55rem;
+      font-weight: 700;
+      line-height: 1.18;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .lead {
+      max-width: 720px;
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .details {
+      padding: 34px 28px 78px;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .detail-card {
+      min-height: 228px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--round);
+      background: rgba(255, 250, 240, 0.82);
+      box-shadow: var(--shadow);
+    }
+
+    .detail-label,
+    .child-count {
+      margin: 0 0 16px;
+      color: var(--teal);
+      font-size: 0.76rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .detail-card h2 {
+      margin: 0;
+      font-family: var(--display);
+      font-size: 1.55rem;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .detail-card p {
+      margin: 16px 0 0;
+      color: var(--muted);
+    }
+
+    .gallery {
+      padding: 78px 28px;
+      background: #173f39;
+      color: #fffaf0;
+    }
+
+    .gallery .eyebrow {
+      color: var(--sun);
+    }
+
+    .gallery .lead {
+      color: rgba(255, 250, 240, 0.74);
+    }
+
+    .gallery-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .gallery-item {
+      position: relative;
+      min-height: 210px;
+      overflow: hidden;
+      border-radius: var(--round);
+      background: #244f49;
+      box-shadow: 0 20px 46px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item.wide {
+      grid-column: span 6;
+      aspect-ratio: 4 / 3;
+    }
+
+    .gallery-item.tall {
+      grid-column: span 3;
+      aspect-ratio: 3 / 4;
+    }
+
+    .gallery-item.medium {
+      grid-column: span 4;
+      aspect-ratio: 4 / 3;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 280ms ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    .registration {
+      padding: 78px 28px 86px;
+      background:
+        linear-gradient(180deg, var(--paper-green), #f9f4e6);
+    }
+
+    .registration-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .registration-copy {
+      position: sticky;
+      top: 24px;
+    }
+
+    .note-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .note {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      align-items: center;
+      min-height: 70px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--round);
+      background: rgba(255, 255, 255, 0.64);
+    }
+
+    .note strong {
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: var(--round);
+      background: var(--forest);
+      color: #fff;
+      font-family: var(--display);
+      font-size: 1rem;
+    }
+
+    .note p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .registration-form {
+      display: grid;
+      gap: 22px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--round);
+      background: rgba(255, 250, 240, 0.9);
+      box-shadow: var(--shadow);
+    }
+
+    .form-section {
+      display: grid;
+      gap: 16px;
+    }
+
+    .form-section h3,
+    .child-card h3 {
+      margin: 0;
+      font-family: var(--display);
+      font-size: 1.18rem;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field span {
+      color: var(--ink);
+      font-size: 0.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 13px;
+      border: 1px solid var(--line);
+      border-radius: var(--round);
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      outline: none;
+    }
+
+    .form-field textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: rgba(47, 140, 128, 0.6);
+      box-shadow: 0 0 0 3px rgba(47, 140, 128, 0.16);
+    }
+
+    .children-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .child-count {
+      margin: 0;
+      color: var(--coral);
+    }
+
+    .children-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .child-card {
+      display: grid;
+      gap: 16px;
+      padding: 18px;
+      border: 1px solid rgba(31, 111, 91, 0.2);
+      border-radius: var(--round);
+      background: #fff;
+    }
+
+    .child-card-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .icon-button {
+      display: inline-grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      flex: 0 0 auto;
+      border: 1px solid rgba(223, 102, 87, 0.34);
+      border-radius: var(--round);
+      background: #fff6f3;
+      color: var(--coral);
+      font-size: 1.35rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .icon-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.42;
+    }
+
+    .form-status {
+      min-height: 26px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+      font-weight: 700;
+    }
+
+    .form-status.success {
+      color: var(--forest);
+    }
+
+    .form-status.error {
+      color: var(--coral);
+    }
+
+    .closing {
+      position: relative;
+      padding: 84px 28px;
+      color: #fffaf0;
+      background:
+        linear-gradient(135deg, rgba(31, 111, 91, 0.92), rgba(32, 51, 49, 0.86)),
+        url("assets/gallery/hdd-2025-08.jpg") center / cover no-repeat;
+    }
+
+    .closing-content {
+      width: min(820px, 100%);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .closing .section-title {
+      font-size: 2.35rem;
+    }
+
+    .closing p {
+      margin: 22px auto 0;
+      max-width: 660px;
+      color: rgba(255, 250, 240, 0.84);
+    }
+
+    .footer {
+      padding: 32px 28px;
+      background: #fffaf0;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .footer strong {
+      color: var(--forest);
+      font-family: var(--display);
+      font-size: 1.25rem;
+      letter-spacing: 0;
+    }
+
+    @media (max-width: 980px) {
+      .hero-nav {
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        max-width: 360px;
+      }
+
+      .intro-grid,
+      .gallery-head,
+      .registration-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .registration-copy {
+        position: static;
+      }
+
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item.wide,
+      .gallery-item.medium {
+        grid-column: span 6;
+      }
+
+      .gallery-item.tall {
+        grid-column: span 6;
+        aspect-ratio: 4 / 3;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        min-height: 84svh;
+        padding: 86px 20px 76px;
+      }
+
+      .hero-nav {
+        left: 20px;
+        right: 20px;
+        width: calc(100% - 40px);
+      }
+
+      .nav-links a {
+        min-height: 34px;
+        padding: 7px 10px;
+        font-size: 0.82rem;
+      }
+
+      .hero-title {
+        font-size: 3.9rem;
+      }
+
+      .hero-text {
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .year-mark strong {
+        font-size: 3.55rem;
+      }
+
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-actions,
+      .child-actions {
+        display: grid;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-nav {
+        display: block;
+      }
+
+      .brand {
+        display: block;
+        margin-bottom: 12px;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .nav-links a:nth-child(2) {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .intro,
+      .details,
+      .gallery,
+      .registration,
+      .closing {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .registration-form {
+        padding: 20px;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item,
+      .gallery-item.wide,
+      .gallery-item.medium,
+      .gallery-item.tall {
+        grid-column: auto;
+        aspect-ratio: 4 / 3;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-label="Приглашение на ХДД 2026">
+      <nav class="hero-nav" aria-label="Навигация">
+        <a class="brand" href="#top" aria-label="ХДД 2026">ХДД 2026</a>
+        <div class="nav-links">
+          <a href="#details">О событии</a>
+          <a href="#gallery">Фото</a>
+          <a href="#registration">Регистрация</a>
+        </div>
+      </nav>
+      <div class="hero-inner" id="top">
+        <p class="hero-kicker">Приглашение на детский день</p>
+        <h1 class="hero-title">ХДД 2026</h1>
+        <p class="hero-text">
+          Новый день радости, игр, творчества, общения и добрых встреч для детей,
+          подростков и семей.
+        </p>
+        <div class="hero-actions" aria-label="Действия">
+          <a class="button" href="#registration">Зарегистрировать детей</a>
+          <a class="button secondary" href="#gallery">Смотреть фото 2025</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro" aria-labelledby="intro-title">
+      <div class="section-inner intro-grid">
+        <div class="year-mark" aria-label="ХДД 2026">
+          <strong>2026</strong>
+          <span>новая встреча</span>
+        </div>
+        <div>
+          <p class="eyebrow">После теплого ХДД 2025</p>
+          <h2 class="section-title" id="intro-title">Собираем детей на праздник, который хочется вспоминать.</h2>
+          <p class="lead">
+            В прошлом году было много движения, смеха и общения. В 2026 году готовим
+            новую программу и заранее собираем регистрации, чтобы всем хватило внимания,
+            места и команды.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="details" id="details" aria-label="Подробности ХДД 2026">
+      <div class="section-inner details-grid">
+        <article class="detail-card">
+          <p class="detail-label">Для кого</p>
+          <h2>Дети и подростки</h2>
+          <p>Приглашаем семьи, которые хотят подарить детям насыщенный и добрый день.</p>
+        </article>
+        <article class="detail-card">
+          <p class="detail-label">Формат</p>
+          <h2>Игры, творчество, общение</h2>
+          <p>Командные активности, мастерские, песни, разговоры и живые впечатления.</p>
+        </article>
+        <article class="detail-card">
+          <p class="detail-label">Регистрация</p>
+          <h2>Одна форма на семью</h2>
+          <p>Родитель заполняет свои данные один раз и добавляет каждого ребенка отдельно.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="gallery" id="gallery" aria-labelledby="gallery-title">
+      <div class="section-inner">
+        <div class="gallery-head">
+          <div>
+            <p class="eyebrow">Фото прошлого года</p>
+            <h2 class="section-title" id="gallery-title">Атмосфера ХДД 2025</h2>
+          </div>
+          <p class="lead">
+            Несколько кадров из прошлого года: игры, команды, летний двор и дети,
+            которые были в центре всего дня.
+          </p>
+        </div>
+        <div class="gallery-grid">
+          <a class="gallery-item wide" href="assets/gallery/hdd-2025-01.jpg" target="_blank" rel="noopener">
+            <img src="assets/gallery/hdd-2025-01.jpg" alt="Дети участвуют в общей активности на ХДД 2025" loading="lazy">
+          </a>
+          <a class="gallery-item tall" href="assets/gallery/hdd-2025-02.jpg" target="_blank" rel="noopener">
+            <img src="assets/gallery/hdd-2025-02.jpg" alt="Дети на батутной площадке ХДД 2025" loading="lazy">
+          </a>
+          <a class="gallery-item tall" href="assets/gallery/hdd-2025-04.jpg" target="_blank" rel="noopener">
+            <img src="assets/gallery/hdd-2025-04.jpg" alt="Игровая площадка и дети на ХДД 2025" loading="lazy">
+          </a>
+          <a class="gallery-item medium" href="assets/gallery/hdd-2025-03.jpg" target="_blank" rel="noopener">
+            <img src="assets/gallery/hdd-2025-03.jpg" alt="Командная активность на ХДД 2025" loading="lazy">
+          </a>
+          <a class="gallery-item medium" href="assets/gallery/hdd-2025-05.jpg" target="_blank" rel="noopener">
+            <img src="assets/gallery/hdd-2025-05.jpg" alt="Участники ХДД 2025 во время игры" loading="lazy">
+          </a>
+          <a class="gallery-item medium" href="assets/gallery/hdd-2025-06.jpg" target="_blank" rel="noopener">
+            <img src="assets/gallery/hdd-2025-06.jpg" alt="Детская команда на ХДД 2025" loading="lazy">
+          </a>
+          <a class="gallery-item wide" href="assets/gallery/hdd-2025-08.jpg" target="_blank" rel="noopener">
+            <img src="assets/gallery/hdd-2025-08.jpg" alt="Общий момент праздника ХДД 2025" loading="lazy">
+          </a>
+          <a class="gallery-item medium" href="assets/gallery/hdd-2025-07.jpg" target="_blank" rel="noopener">
+            <img src="assets/gallery/hdd-2025-07.jpg" alt="Дети и ведущие на ХДД 2025" loading="lazy">
+          </a>
+          <a class="gallery-item medium" href="assets/gallery/hdd-2025-09.jpg" target="_blank" rel="noopener">
+            <img src="assets/gallery/hdd-2025-09.jpg" alt="Игровая программа ХДД 2025" loading="lazy">
+          </a>
+          <a class="gallery-item medium" href="assets/gallery/hdd-2025-10.jpg" target="_blank" rel="noopener">
+            <img src="assets/gallery/hdd-2025-10.jpg" alt="Участники на площадке ХДД 2025" loading="lazy">
+          </a>
+          <a class="gallery-item medium" href="assets/gallery/hdd-2025-11.jpg" target="_blank" rel="noopener">
+            <img src="assets/gallery/hdd-2025-11.jpg" alt="Командная игра на ХДД 2025" loading="lazy">
+          </a>
+          <a class="gallery-item medium" href="assets/gallery/hdd-2025-12.jpg" target="_blank" rel="noopener">
+            <img src="assets/gallery/hdd-2025-12.jpg" alt="Дети во время праздника ХДД 2025" loading="lazy">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="registration" id="registration" aria-labelledby="registration-title">
+      <div class="section-inner registration-layout">
+        <div class="registration-copy">
+          <p class="eyebrow">Регистрация</p>
+          <h2 class="section-title" id="registration-title">Заполните данные семьи и добавьте детей.</h2>
+          <p class="lead">
+            Черновик сохраняется в этом браузере автоматически. Если страница перезагрузится,
+            введенные данные можно будет продолжить.
+          </p>
+          <div class="note-list" aria-label="Кратко о форме">
+            <div class="note">
+              <strong>1</strong>
+              <p>Данные родителя вводятся один раз.</p>
+            </div>
+            <div class="note">
+              <strong>+</strong>
+              <p>Каждого ребенка можно добавить отдельным блоком.</p>
+            </div>
+            <div class="note">
+              <strong>✓</strong>
+              <p>При отправке создается отдельная запись на каждого ребенка.</p>
+            </div>
+          </div>
+        </div>
+
+        <form class="registration-form" id="registration-form" novalidate>
+          <section class="form-section" aria-labelledby="parent-title">
+            <h3 id="parent-title">Родитель</h3>
+            <div class="field-grid">
+              <label class="form-field">
+                <span>Имя родителя</span>
+                <input type="text" name="parent_name" autocomplete="name" data-parent-field="name" required>
+              </label>
+              <label class="form-field">
+                <span>Телефон или Telegram</span>
+                <input type="text" name="parent_phone" autocomplete="tel" data-parent-field="phone" required>
+              </label>
+              <label class="form-field">
+                <span>Email</span>
+                <input type="email" name="parent_email" autocomplete="email" data-parent-field="email">
+              </label>
+              <label class="form-field">
+                <span>Церковь или город</span>
+                <input type="text" name="parent_congregation" data-parent-field="congregation">
+              </label>
+              <label class="form-field full">
+                <span>Комментарий родителя</span>
+                <textarea name="parent_comment" rows="3" data-parent-field="comment"></textarea>
+              </label>
+            </div>
+          </section>
+
+          <section class="form-section" aria-labelledby="children-title">
+            <div class="children-head">
+              <h3 id="children-title">Дети</h3>
+              <p class="child-count" id="child-count">1 ребенок</p>
+            </div>
+            <div class="children-list" id="children-list"></div>
+            <div class="child-actions">
+              <button class="button ghost" type="button" id="add-child">+ Добавить ребенка</button>
+            </div>
+          </section>
+
+          <div class="form-actions">
+            <button class="button" type="submit" id="registration-submit">Отправить регистрацию</button>
+            <button class="button danger" type="button" id="reset-form">Сбросить форму</button>
+          </div>
+          <p class="form-status" id="registration-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <div class="closing-content">
+        <p class="eyebrow">Будем рады видеть вас</p>
+        <h2 class="section-title" id="closing-title">Пусть ХДД 2026 станет днем, который дети заберут с собой надолго.</h2>
+        <p>
+          Спасибо, что заранее регистрируете детей. Это помогает подготовить команды,
+          активности и заботу о каждом участнике.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <strong>ХДД 2026</strong>
+  </footer>
+
+  <script>
+    const googleFormConfig = {
+      action: "https://docs.google.com/forms/d/e/1FAIpQLSeBkopLzp4erTiZ0lZRbcIad5o5QRRKZf-u_Dhga2n-npiqLA/formResponse",
+      fields: {
+        parentName: "entry.629938792",
+        attendance: "entry.587974994",
+        childCount: "entry.1135695922",
+        contact: "entry.2109219892",
+        comment: "entry.745919178"
+      }
+    };
+
+    const STORAGE_KEY = "hdd-2026-registration-v1";
+    const registrationForm = document.getElementById("registration-form");
+    const childrenList = document.getElementById("children-list");
+    const childCount = document.getElementById("child-count");
+    const addChildButton = document.getElementById("add-child");
+    const resetButton = document.getElementById("reset-form");
+    const submitButton = document.getElementById("registration-submit");
+    const statusNode = document.getElementById("registration-status");
+
+    const emptyChild = () => ({
+      name: "",
+      age: "",
+      notes: ""
+    });
+
+    const emptyState = () => ({
+      parent: {
+        name: "",
+        phone: "",
+        email: "",
+        congregation: "",
+        comment: ""
+      },
+      children: [emptyChild()]
+    });
+
+    const pluralChildren = (count) => {
+      if (count % 10 === 1 && count % 100 !== 11) {
+        return `${count} ребенок`;
+      }
+
+      if ([2, 3, 4].includes(count % 10) && ![12, 13, 14].includes(count % 100)) {
+        return `${count} ребенка`;
+      }
+
+      return `${count} детей`;
+    };
+
+    const setStatus = (message, type = "") => {
+      statusNode.textContent = message;
+      statusNode.className = type ? `form-status ${type}` : "form-status";
+    };
+
+    const isGoogleFormConfigured = () => {
+      const fields = Object.values(googleFormConfig.fields);
+
+      return googleFormConfig.action.includes("/formResponse") &&
+        fields.every((fieldName) => fieldName.startsWith("entry."));
+    };
+
+    const getParentState = () => {
+      const parent = {};
+      registrationForm.querySelectorAll("[data-parent-field]").forEach((field) => {
+        parent[field.dataset.parentField] = field.value.trim();
+      });
+
+      return parent;
+    };
+
+    const getChildrenState = () => {
+      return Array.from(childrenList.querySelectorAll("[data-child-card]")).map((card) => {
+        const child = {};
+        card.querySelectorAll("[data-child-field]").forEach((field) => {
+          child[field.dataset.childField] = field.value.trim();
+        });
+
+        return child;
+      });
+    };
+
+    const getFormState = () => ({
+      parent: getParentState(),
+      children: getChildrenState()
+    });
+
+    const saveDraft = () => {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(getFormState()));
+      } catch (error) {
+        setStatus("Не получилось сохранить черновик в этом браузере.", "error");
+      }
+    };
+
+    const loadDraft = () => {
+      try {
+        const rawDraft = localStorage.getItem(STORAGE_KEY);
+
+        if (!rawDraft) {
+          return emptyState();
+        }
+
+        const draft = JSON.parse(rawDraft);
+        const fallback = emptyState();
+
+        return {
+          parent: { ...fallback.parent, ...(draft.parent || {}) },
+          children: Array.isArray(draft.children) && draft.children.length > 0
+            ? draft.children.map((child) => ({ ...emptyChild(), ...child }))
+            : fallback.children
+        };
+      } catch (error) {
+        return emptyState();
+      }
+    };
+
+    const updateChildControls = () => {
+      const cards = childrenList.querySelectorAll("[data-child-card]");
+
+      childCount.textContent = pluralChildren(cards.length);
+      cards.forEach((card, index) => {
+        card.dataset.index = String(index);
+        card.querySelector("[data-child-title]").textContent = `Ребенок ${index + 1}`;
+        card.querySelectorAll("[data-child-field]").forEach((field) => {
+          field.name = `children[${index}][${field.dataset.childField}]`;
+        });
+        card.querySelector("[data-remove-child]").disabled = cards.length === 1;
+      });
+    };
+
+    const createChildCard = (child) => {
+      const card = document.createElement("article");
+      card.className = "child-card";
+      card.dataset.childCard = "";
+      card.innerHTML = `
+        <div class="child-card-head">
+          <h3 data-child-title>Ребенок</h3>
+          <button class="icon-button" type="button" data-remove-child aria-label="Удалить ребенка" title="Удалить ребенка">×</button>
+        </div>
+        <div class="field-grid">
+          <label class="form-field">
+            <span>Имя ребенка</span>
+            <input type="text" data-child-field="name" autocomplete="off" required>
+          </label>
+          <label class="form-field">
+            <span>Возраст</span>
+            <input type="number" data-child-field="age" min="1" max="18" inputmode="numeric" required>
+          </label>
+          <label class="form-field full">
+            <span>Аллергии, особенности, комментарий</span>
+            <textarea rows="3" data-child-field="notes"></textarea>
+          </label>
+        </div>
+      `;
+
+      card.querySelector('[data-child-field="name"]').value = child.name || "";
+      card.querySelector('[data-child-field="age"]').value = child.age || "";
+      card.querySelector('[data-child-field="notes"]').value = child.notes || "";
+
+      return card;
+    };
+
+    const renderChildren = (children) => {
+      childrenList.innerHTML = "";
+      children.forEach((child) => {
+        childrenList.appendChild(createChildCard(child));
+      });
+      updateChildControls();
+    };
+
+    const applyState = (state) => {
+      registrationForm.querySelectorAll("[data-parent-field]").forEach((field) => {
+        field.value = state.parent[field.dataset.parentField] || "";
+      });
+      renderChildren(state.children);
+    };
+
+    const buildChildComment = (parent, child, index, total) => {
+      const lines = [
+        "ХДД 2026",
+        `Ребенок ${index + 1} из ${total}`,
+        `Имя ребенка: ${child.name}`,
+        `Возраст: ${child.age}`,
+        `Родитель: ${parent.name}`,
+        `Контакт: ${parent.phone}`
+      ];
+
+      if (parent.email) {
+        lines.push(`Email: ${parent.email}`);
+      }
+
+      if (parent.congregation) {
+        lines.push(`Церковь или город: ${parent.congregation}`);
+      }
+
+      if (child.notes) {
+        lines.push(`Особенности ребенка: ${child.notes}`);
+      }
+
+      if (parent.comment) {
+        lines.push(`Комментарий родителя: ${parent.comment}`);
+      }
+
+      return lines.join("\n");
+    };
+
+    const submitChild = (parent, child, index, total) => {
+      const googleFormData = new FormData();
+      const contacts = [parent.phone, parent.email].filter(Boolean).join(" / ");
+
+      googleFormData.append(googleFormConfig.fields.parentName, parent.name);
+      googleFormData.append(googleFormConfig.fields.attendance, "Да, буду");
+      googleFormData.append(googleFormConfig.fields.childCount, String(total));
+      googleFormData.append(googleFormConfig.fields.contact, contacts);
+      googleFormData.append(googleFormConfig.fields.comment, buildChildComment(parent, child, index, total));
+
+      return fetch(googleFormConfig.action, {
+        method: "POST",
+        mode: "no-cors",
+        body: googleFormData
+      });
+    };
+
+    if (!isGoogleFormConfigured()) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Форма скоро будет доступна";
+      setStatus("Отправка пока не подключена.");
+    }
+
+    applyState(loadDraft());
+
+    registrationForm.addEventListener("input", saveDraft);
+    registrationForm.addEventListener("change", saveDraft);
+
+    addChildButton.addEventListener("click", () => {
+      const state = getFormState();
+      state.children.push(emptyChild());
+      renderChildren(state.children);
+      saveDraft();
+
+      const lastCard = childrenList.querySelector("[data-child-card]:last-child");
+      lastCard?.querySelector("[data-child-field]")?.focus();
+    });
+
+    childrenList.addEventListener("click", (event) => {
+      const removeButton = event.target.closest("[data-remove-child]");
+
+      if (!removeButton) {
+        return;
+      }
+
+      const state = getFormState();
+      const card = removeButton.closest("[data-child-card]");
+      const index = Number(card.dataset.index);
+      state.children.splice(index, 1);
+
+      renderChildren(state.children.length > 0 ? state.children : [emptyChild()]);
+      saveDraft();
+    });
+
+    resetButton.addEventListener("click", () => {
+      if (!window.confirm("Сбросить все введенные данные?")) {
+        return;
+      }
+
+      localStorage.removeItem(STORAGE_KEY);
+      registrationForm.reset();
+      renderChildren([emptyChild()]);
+      setStatus("Форма очищена.");
+    });
+
+    registrationForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!registrationForm.reportValidity()) {
+        return;
+      }
+
+      if (!isGoogleFormConfigured()) {
+        setStatus("Отправка пока не подключена.", "error");
+        return;
+      }
+
+      const state = getFormState();
+      const total = state.children.length;
+      let sentCount = 0;
+
+      submitButton.disabled = true;
+      addChildButton.disabled = true;
+      resetButton.disabled = true;
+      setStatus(`Отправляем: 0 из ${total}.`);
+
+      try {
+        for (const [index, child] of state.children.entries()) {
+          await submitChild(state.parent, child, index, total);
+          sentCount += 1;
+          setStatus(`Отправляем: ${sentCount} из ${total}.`);
+        }
+
+        localStorage.removeItem(STORAGE_KEY);
+        registrationForm.reset();
+        renderChildren([emptyChild()]);
+        setStatus(`Спасибо! Отправлено: ${pluralChildren(sentCount)}.`, "success");
+      } catch (error) {
+        saveDraft();
+        setStatus(`Не получилось отправить все записи. Отправлено: ${sentCount} из ${total}. Черновик сохранен.`, "error");
+      } finally {
+        submitButton.disabled = false;
+        addChildButton.disabled = false;
+        resetButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
