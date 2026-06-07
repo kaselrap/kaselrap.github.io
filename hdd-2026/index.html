@@ -724,6 +724,54 @@
       color: var(--coral);
     }
 
+    .success-panel {
+      display: grid;
+      gap: 16px;
+      padding: 26px;
+      border: 1px solid rgba(101, 127, 106, 0.26);
+      border-radius: var(--round);
+      background:
+        linear-gradient(135deg, rgba(237, 241, 236, 0.94), rgba(255, 248, 238, 0.96));
+      box-shadow: 0 18px 46px rgba(92, 78, 62, 0.1);
+    }
+
+    .success-panel[hidden] {
+      display: none;
+    }
+
+    .success-panel h3 {
+      margin: 0;
+      color: var(--forest);
+      font-family: var(--display);
+      font-size: 1.45rem;
+      line-height: 1.22;
+      letter-spacing: 0;
+    }
+
+    .success-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .success-panel .button {
+      justify-self: start;
+      margin-top: 2px;
+    }
+
+    .success-panel .success-eyebrow {
+      color: var(--coral);
+      font-size: 0.76rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .registration-form.is-success > .form-section,
+    .registration-form.is-success > .form-actions,
+    .registration-form.is-success > .form-status {
+      display: none;
+    }
+
     .closing {
       position: relative;
       padding: 84px 28px;
@@ -1179,6 +1227,12 @@
             <button class="button" type="submit" id="registration-submit">Отправить регистрацию</button>
             <button class="button danger" type="button" id="reset-form">Сбросить форму</button>
           </div>
+          <div class="success-panel" id="registration-success" role="status" aria-live="polite" tabindex="-1" hidden>
+            <p class="success-eyebrow">Регистрация отправлена</p>
+            <h3>Спасибо! Данные приняты.</h3>
+            <p id="registration-success-text">Форма успешно отправлена.</p>
+            <button class="button" type="button" id="send-another">Отправить ещё раз</button>
+          </div>
           <p class="form-status" id="registration-status" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -1227,6 +1281,9 @@
     const resetButton = document.getElementById("reset-form");
     const submitButton = document.getElementById("registration-submit");
     const statusNode = document.getElementById("registration-status");
+    const successPanel = document.getElementById("registration-success");
+    const successText = document.getElementById("registration-success-text");
+    const sendAnotherButton = document.getElementById("send-another");
     const countdownRoot = document.querySelector("[data-countdown]");
     const galleryRoot = document.querySelector("[data-gallery-slider]");
     const galleryTrack = document.querySelector("[data-gallery-track]");
@@ -1284,6 +1341,20 @@
     const setStatus = (message, type = "") => {
       statusNode.textContent = message;
       statusNode.className = type ? `form-status ${type}` : "form-status";
+    };
+
+    const showRegistrationForm = () => {
+      registrationForm.classList.remove("is-success");
+      successPanel.hidden = true;
+      setStatus("");
+    };
+
+    const showRegistrationSuccess = (sentCount) => {
+      registrationForm.classList.add("is-success");
+      successText.textContent = `Отправлено: ${pluralChildren(sentCount)}. Можно отправить ещё одну регистрацию, если нужно.`;
+      successPanel.hidden = false;
+      setStatus("");
+      successPanel.focus();
     };
 
     const padCountdown = (value) => String(value).padStart(2, "0");
@@ -1623,7 +1694,16 @@
       localStorage.removeItem(STORAGE_KEY);
       registrationForm.reset();
       renderChildren([emptyChild()]);
+      showRegistrationForm();
       setStatus("Форма очищена.");
+    });
+
+    sendAnotherButton.addEventListener("click", () => {
+      localStorage.removeItem(STORAGE_KEY);
+      registrationForm.reset();
+      renderChildren([emptyChild()]);
+      showRegistrationForm();
+      registrationForm.querySelector("[data-parent-field]")?.focus();
     });
 
     registrationForm.addEventListener("submit", async (event) => {
@@ -1657,7 +1737,7 @@
         localStorage.removeItem(STORAGE_KEY);
         registrationForm.reset();
         renderChildren([emptyChild()]);
-        setStatus(`Спасибо! Отправлено: ${pluralChildren(sentCount)}.`, "success");
+        showRegistrationSuccess(sentCount);
       } catch (error) {
         saveDraft();
         setStatus(`Не получилось отправить все записи. Отправлено: ${sentCount} из ${total}. Черновик сохранен.`, "error");
